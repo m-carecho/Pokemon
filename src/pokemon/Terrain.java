@@ -4,15 +4,13 @@ public class Terrain {
     private MapType mapType;
     private boolean isPokemonSpawnable;
     private boolean isItemSpawnable;
+    private boolean isPlayerPresent;
+    private String description;
+    private String newDescription;
 
     public Terrain() {
     }
 
-    public Terrain(MapType mapType, boolean isPokemonSpawnable, boolean isItemSpawnable) {
-        this.mapType = mapType;
-        this.isPokemonSpawnable = isPokemonSpawnable;
-        this.isItemSpawnable = isItemSpawnable;
-    }
 
     public MapType getMapType() {
         return mapType;
@@ -37,4 +35,31 @@ public class Terrain {
     public void setItemSpawnable(boolean itemSpawnable) {
         isItemSpawnable = itemSpawnable;
     }
+
+    public boolean isPlayerPresent() {
+        return isPlayerPresent;
+    }
+
+    public void setPlayerPresent(boolean playerPresent) {
+        isPlayerPresent = playerPresent;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNewDescription() {
+        return newDescription;
+    }
+
+    public void setNewDescription(String newDescription) {
+        this.newDescription = newDescription;
+    }
 }
+
+
+
