@@ -6,7 +6,8 @@ public class Terrain {
     private boolean isItemSpawnable;
     private boolean isPlayerPresent;
     private String description;
-    private String newDescription;
+    private String index;
+    private String updatedIndex;
 
     public Terrain() {
     }
@@ -52,12 +53,20 @@ public class Terrain {
         this.description = description;
     }
 
-    public String getNewDescription() {
-        return newDescription;
+    public String getIndex() {
+        return index;
     }
 
-    public void setNewDescription(String newDescription) {
-        this.newDescription = newDescription;
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getUpdatedIndex() {
+        return updatedIndex;
+    }
+
+    public void setUpdatedIndex(String updatedIndex) {
+        this.updatedIndex = updatedIndex;
     }
 }
 
