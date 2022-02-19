@@ -17,6 +17,17 @@ public class GameSystem {
 
     }
 
+    public static Terrain terrainCreation(boolean playerPresent, boolean itemSpawn, boolean pokemonSpawn, MapType mapType,
+                                          String description) {
+        Terrain terrain = new Terrain();
+        terrain.setPlayerPresent(playerPresent);
+        terrain.setItemSpawnable(itemSpawn);
+        terrain.setMapType(mapType);
+        terrain.setPokemonSpawnable(pokemonSpawn);
+        terrain.setDescription(description);
+        return terrain;
+    }
+
 
 
 }
