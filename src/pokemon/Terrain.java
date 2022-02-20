@@ -8,6 +8,9 @@ public class Terrain {
     private String description;
     private String index;
     private String updatedIndex;
+    private boolean isAnAccess;
+    private boolean firstTerrain;
+
 
     public Terrain() {
     }
@@ -67,6 +70,22 @@ public class Terrain {
 
     public void setUpdatedIndex(String updatedIndex) {
         this.updatedIndex = updatedIndex;
+    }
+
+    public boolean isAnAccess() {
+        return isAnAccess;
+    }
+
+    public void setAnAccess(boolean anAccess) {
+        isAnAccess = anAccess;
+    }
+
+    public boolean isFirstTerrain() {
+        return firstTerrain;
+    }
+
+    public void setFirstTerrain(boolean firstTerrain) {
+        this.firstTerrain = firstTerrain;
     }
 }
 
