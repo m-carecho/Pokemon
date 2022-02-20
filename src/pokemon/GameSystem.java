@@ -2,10 +2,16 @@ package pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class GameSystem {
 
     public static List<Map> mapList = new ArrayList<>();
+
+    private static Scanner scanner(String message){
+        System.out.println(message);
+        return new Scanner(System.in);
+    }
 
     public static void mapCreation(String name, MapType mapType, List<Terrain> terrainList) {
         Map map = new Map();
@@ -29,7 +35,7 @@ public class GameSystem {
         return terrain;
     }
 
-    public static void mapMovement(Map map, int movement) {
+    public static void mapUpdate(Map map, int movement) {
         for (Terrain terrain : map.getTerrains())
             terrain.setPlayerPresent(false);
         map.getTerrains().get(movement).setPlayerPresent(true);
@@ -55,6 +61,12 @@ public class GameSystem {
         System.out.println();
     }
 
-
+    public static void playerMovement(Map map){
+        boolean movementLoop = true;
+        while (movementLoop){
+            int destination = scanner("Where do you wanna go? Answer with the location number").nextInt();
+            mapUpdate(map, destination);
+        }
+    }
 
 }
