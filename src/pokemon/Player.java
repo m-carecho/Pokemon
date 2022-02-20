@@ -5,6 +5,7 @@ import java.util.List;
 public class Player extends Person{
     private List<Pokemon> pokemonList;
     private double coins;
+    private int currentMapIndex;
 
     public Player() {
     }
@@ -27,5 +28,13 @@ public class Player extends Person{
 
     public void setCoins(double coins) {
         this.coins = coins;
+    }
+
+    public int getCurrentMapIndex() {
+        return currentMapIndex;
+    }
+
+    public void setCurrentMapIndex(int currentMapIndex) {
+        this.currentMapIndex = currentMapIndex;
     }
 }
