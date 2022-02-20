@@ -24,7 +24,7 @@ public class GameSystem {
     }
 
     public static Terrain terrainCreation(boolean playerPresent, boolean itemSpawn, boolean pokemonSpawn, MapType mapType,
-                                          String description, String index) {
+                                          String description, String index, boolean isAnAcess, boolean firstTerrain) {
         Terrain terrain = new Terrain();
         terrain.setPlayerPresent(playerPresent);
         terrain.setItemSpawnable(itemSpawn);
@@ -32,10 +32,12 @@ public class GameSystem {
         terrain.setPokemonSpawnable(pokemonSpawn);
         terrain.setDescription(description);
         terrain.setIndex(index);
+        terrain.setAnAccess(isAnAcess);
+        terrain.setFirstTerrain(firstTerrain);
         return terrain;
     }
 
-    public static void mapUpdate(Map map, int movement) {
+    public static int mapUpdate(Map map, int movement) {
         for (Terrain terrain : map.getTerrains())
             terrain.setPlayerPresent(false);
         map.getTerrains().get(movement).setPlayerPresent(true);
@@ -59,13 +61,39 @@ public class GameSystem {
                 .getUpdatedIndex()+"]\t\t\t" + map.getTerrains().get(8).getDescription() + " ["+map.getTerrains().get(8)
                 .getUpdatedIndex()+"]");
         System.out.println();
+
+        if (map.getTerrains().get(movement).isAnAccess()){
+            String changeMap = scanner("Do you wanna enter in " + map.getTerrains().get(movement).getDescription() + "?")
+                    .next();
+            if (changeMap.equalsIgnoreCase("yes")){
+                if (map.getTerrains().get(movement).isFirstTerrain()){
+                    return -1;
+                }
+                return 1;
+            }
+        }
+        return 0;
     }
 
-    public static void playerMovement(Map map){
+    public static void playerMovement(Player player, List<Map> mapList){
         boolean movementLoop = true;
+        for (Terrain terrain: mapList.get(player.getCurrentMapIndex()).getTerrains()){
+            if(terrain.isFirstTerrain()){
+                mapUpdate(mapList.get(player.getCurrentMapIndex()), Integer.parseInt(terrain.getIndex()));
+            }
+        }
         while (movementLoop){
             int destination = scanner("Where do you wanna go? Answer with the location number").nextInt();
-            mapUpdate(map, destination);
+            int mapChange = mapUpdate(mapList.get(player.getCurrentMapIndex()), destination);
+            player.setCurrentMapIndex(player.getCurrentMapIndex() + mapChange);
+            if (mapChange != 0){
+                for (Terrain terrain: mapList.get(player.getCurrentMapIndex()).getTerrains()){
+                    if(terrain.isFirstTerrain()){
+                        mapUpdate(mapList.get(player.getCurrentMapIndex()), Integer.parseInt(terrain.getIndex()));
+                    }
+                }
+            }
+
         }
     }
 
